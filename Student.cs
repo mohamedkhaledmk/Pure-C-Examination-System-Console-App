@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,9 +19,10 @@ namespace ConsoleApp1
             Id = std.Id;
         }
 
-        public void onExamStarted(object sender,ExamEventArgs e)
+        public void onExamStarted(object sender, ExamEventArgs e)
         {
-
+            if (e == null || e.Subject == null) return;
+            Console.WriteLine($"Student {Name} (Id: {Id}) notified: Exam for subject {e.Subject.Name} has started.");
         }
     }
 }

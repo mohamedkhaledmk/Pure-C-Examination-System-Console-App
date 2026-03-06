@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,7 +7,18 @@ namespace ConsoleApp1
     public class Answer:IComparable<Answer>
     {
         public int Id { get; set; }
-        public string Text { get; set; }
+        public string Text { get; set; } = string.Empty;
+
+        public Answer()
+        {
+            Text = string.Empty;
+        }
+
+        public Answer(int id, string text)
+        {
+            Id = id;
+            Text = text;
+        }
         public int CompareTo(Answer? ans)
         {
             return Id.CompareTo(ans?.Id??0);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,24 +8,30 @@ namespace ConsoleApp1
     public enum ExamMode { Starting,Queued,Finished};
     public abstract class Exam : ICloneable, IComparable<Exam>
     {
+        private ExamMode _mode;
+
         public int Time { get; set; }
         public int NumberOfQuestions { get; set; }
         public List<Question> Questions { get; set; }
         public Dictionary<Question, Answer> QuestionAnswerDirectory { get; set; }
         public Subject Subject { get; set; }
+
         public ExamMode Mode
         {
-            get; 
+            get => _mode;
             set
             {
-                field = value;
+                _mode = value;
                 if (value == ExamMode.Starting)
                     ExamStarted?.Invoke(this, new ExamEventArgs(Subject, this));
             }
         }
 
         //EventHandler
-        public event ExamStartedHandler ExamStarted;
+        public event ExamStartedHandler? ExamStarted;
+
+        //helper
+        protected void OnExamStart() => ExamStarted?.Invoke(this, new ExamEventArgs(Subject, this));
 
         //ctor
         public Exam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub)
@@ -47,6 +53,19 @@ namespace ConsoleApp1
         {
             Mode = ExamMode.Starting;
             Console.WriteLine("Exam Started");
+        }
+
+        public virtual int CorrectExam()
+        {
+            int total = 0;
+
+            foreach (var (q,a) in QuestionAnswerDirectory)
+            {
+                if (q.CheckAnswers(a))
+                    total += q.Marks;
+            }
+
+            return total;
         }
 
         public virtual void Finish()

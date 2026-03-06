@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,14 +11,22 @@ namespace ConsoleApp1
 
         }
 
-        public override bool CheckAnswers(Answer StudentAnswer)
+        public override bool CheckAnswers(Answer studentAnswer)
         {
-            throw new NotImplementedException();
+            if (studentAnswer == null || CorrectAnswer == null)
+                return false;
+
+            return studentAnswer.Equals(CorrectAnswer);
         }
 
         public override void Display()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"The Question Header is : {Header}\t\t {Marks} Marks");
+            Console.WriteLine($"The Question Body is {Body}");
+            Console.WriteLine("The Options Are :");
+
+            foreach (var ans in Answers)
+                Console.WriteLine($"- {ans}");
         }
     }
 }

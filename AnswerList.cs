@@ -1,57 +1,70 @@
-﻿using System;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp1
 {
-    public class AnswerList
+    public class AnswerList : IEnumerable<Answer>
     {
-        public int Count { get; set; };
-        private List<Answer> Answers;
+        private readonly List<Answer> _answers;
+
+        public int Count => _answers.Count;
+
         public AnswerList()
         {
-            Answers = new List<Answer>(10);
-            Count = 0;
+            _answers = new List<Answer>(10);
         }
-        public AnswerList(List<Answer> answers):this()
+
+        public AnswerList(List<Answer> answers) : this()
         {
-            foreach(var x in answers)
+            if (answers == null) return;
+
+            foreach (var x in answers)
             {
-                Answers.Add(x);
-                Count++;
+                Add(x);
             }
         }
+
         public Answer? this[int idx]
         {
-            get 
+            get
             {
-                if (idx < Answers.Count())
-                    return Answers.ElementAt(idx);
+                if (idx >= 0 && idx < _answers.Count)
+                    return _answers[idx];
+
                 return null;
             }
-            set 
+            set
             {
-                if(value is Answer ansVal)
+                if (idx >= 0 && idx < _answers.Count && value is Answer ansVal)
                 {
-                    Answers[idx] =ansVal;
+                    _answers[idx] = ansVal;
                 }
             }
         }
+
         public void Add(Answer answer)
         {
-            Answers.Add(answer);
-            Count++;
+            if (answer == null) return;
+            _answers.Add(answer);
         }
-        public Answer GetById(int id)
+
+        public Answer? GetById(int id)
         {
-            foreach(Answer ans in Answers)
+            foreach (Answer ans in _answers)
             {
-                if(ans.Id==id)
+                if (ans.Id == id)
                 {
                     return ans;
                 }
             }
+
             return null;
         }
+
+        public IEnumerator<Answer> GetEnumerator() => _answers.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

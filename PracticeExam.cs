@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Timers;
@@ -15,19 +15,25 @@ namespace ConsoleApp1
         {
             base.Finish();
             int correctAns = 0;
-            for(int i=0;i<QuestionAnswerDirectory.Count();i++)
+            int i = 1;
+
+            foreach (var pair in QuestionAnswerDirectory)
             {
-                if(QuestionAnswerDirectory.ElementAt(i).Key.CheckAnswers(QuestionAnswerDirectory.ElementAt(i).Value))
+                if (pair.Key.CheckAnswers(pair.Value))
                 {
-                    Console.WriteLine("Correct Student Answer");
+                    Console.WriteLine($"Question {i}: Correct Student Answer");
                     correctAns++;
-                } else
-                {
-                    Console.WriteLine("Incorrect Student Answer");
                 }
+                else
+                {
+                    Console.WriteLine($"Question {i}: Incorrect Student Answer");
+                }
+
+                i++;
             }
+
             Console.WriteLine("-----TOTAL GRADE------");
-            Console.WriteLine(correctAns/QuestionAnswerDirectory.Count());
+            Console.WriteLine($"{correctAns}/{QuestionAnswerDirectory.Count()}");
         }
 
         public override void ShowExam()
