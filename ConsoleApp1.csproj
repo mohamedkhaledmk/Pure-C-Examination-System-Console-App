@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="CorrectedVersion\**" />
+    <EmbeddedResource Remove="CorrectedVersion\**" />
+    <None Remove="CorrectedVersion\**" />
+  </ItemGroup>
+
 </Project>

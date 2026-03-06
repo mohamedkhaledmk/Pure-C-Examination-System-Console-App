@@ -6,18 +6,41 @@ namespace ConsoleApp1
 {
     public class ChooseAllQuestion : Question
     {
-        public ChooseAllQuestion(string h, string b, int m, AnswerList answers, Answer correctAns)
-            : base(h, b, m, answers, correctAns)
+        AnswerList CorrectAnswers;
+        public ChooseAllQuestion(string h, string b, int m, AnswerList answers, AnswerList correctAns) : base(h, b, m, answers, null)
         {
+            
         }
 
-        public override bool CheckAnswer(Answer studentAnswer)
+        public bool CheckAnswer(AnswerList studentAnswer)
         {
-            if (studentAnswer == null || CorrectAnswer == null)
+            if (studentAnswer == null || CorrectAnswers == null)
                 return false;
 
-            // For now treat this like a single-answer question.
-            return studentAnswer.Equals(CorrectAnswer);
+            if (studentAnswer.Count != CorrectAnswers.Count)
+                return false;
+
+            foreach (Answer correct in CorrectAnswers)
+            {
+                bool found = false;
+                foreach (Answer student in studentAnswer)
+                {
+                    if (student.Equals(correct))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public override bool CheckAnswer(Answer stdAns)
+        {
+            throw new NotImplementedException();
         }
 
         public override void Display()

@@ -61,7 +61,7 @@ namespace ConsoleApp1
 
             foreach (var (q,a) in QuestionAnswerDirectory)
             {
-                if (q.CheckAnswers(a))
+                if (q.CheckAnswer(a))
                     total += q.Marks;
             }
 
