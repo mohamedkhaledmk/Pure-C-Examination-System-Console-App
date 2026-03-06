@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class TrueFalseQuestion:Question
+    public class TrueFalseQuestion:Question
     {
         public TrueFalseQuestion(string h,string b,int m,AnswerList answers ,Answer CorrectAnswer):base(h,b,m,answers,CorrectAnswer)
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class QuestionList:List<Question>
+    public class QuestionList:List<Question>
     {
         public readonly string FileName;
         public QuestionList(string fn)

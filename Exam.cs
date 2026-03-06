@@ -4,15 +4,28 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    enum ExamMode { Starting,Queued,Finished};
-    internal abstract class Exam : ICloneable, IComparable<Exam>
+    public delegate void ExamStartedHandler(object sender, ExamEventArgs e);
+    public enum ExamMode { Starting,Queued,Finished};
+    public abstract class Exam : ICloneable, IComparable<Exam>
     {
-        protected int Time { get; set; }
+        public int Time { get; set; }
         public int NumberOfQuestions { get; set; }
         public List<Question> Questions { get; set; }
         public Dictionary<Question, Answer> QuestionAnswerDirectory { get; set; }
-        protected Subject Subject { get; set; }
-        ExamMode Mode;
+        public Subject Subject { get; set; }
+        public ExamMode Mode
+        {
+            get; 
+            set
+            {
+                field = value;
+                if (value == ExamMode.Starting)
+                    ExamStarted?.Invoke(this, new ExamEventArgs(Subject, this));
+            }
+        }
+
+        //EventHandler
+        public event ExamStartedHandler ExamStarted;
 
         //ctor
         public Exam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub)

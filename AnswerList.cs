@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class AnswerList
+    public class AnswerList
     {
         public int Count { get; set; };
         private List<Answer> Answers;

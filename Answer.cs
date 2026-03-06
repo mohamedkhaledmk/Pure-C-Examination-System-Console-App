@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class Answer:IComparable<Answer>
+    public class Answer:IComparable<Answer>
     {
         public int Id { get; set; }
         public string Text { get; set; }

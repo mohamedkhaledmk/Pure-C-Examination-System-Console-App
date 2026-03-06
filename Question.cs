@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    internal abstract class Question
+    public abstract class Question
     {
         protected string Header { get; set=>field = value??"N/A"; }
         protected string Body { get; set => field = value ?? "Empty Body"; }

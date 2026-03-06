@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class ChooseOneQuestion : Question
+    public class ChooseOneQuestion : Question
     {
         public ChooseOneQuestion(string h, string b, int m, AnswerList answers, Answer correctAns) : base(h, b, m, answers, correctAns)
         {

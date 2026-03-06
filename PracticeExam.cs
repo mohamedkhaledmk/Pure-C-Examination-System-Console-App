@@ -5,7 +5,7 @@ using System.Timers;
 
 namespace ConsoleApp1
 {
-    internal class PracticeExam:Exam
+    public class PracticeExam:Exam
     {
         public PracticeExam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub) : base(t, n, q, qad, sub)
         {

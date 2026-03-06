@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class ChooseAllQuestion:Question
+    public class ChooseAllQuestion:Question
     {
         protected override AnswerList Answers;
         public bool CheckAnswers(Answer StudentAnswer)

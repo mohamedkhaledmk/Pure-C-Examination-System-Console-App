@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class Subject
+     public class Subject
     {
         public string Name { get; set; }
         public List<Student> EnrolledStudents;
@@ -18,6 +18,10 @@ namespace ConsoleApp1
                 return true;
             }
                 return false;
+        }
+        public void NotifyStudents()
+        {
+
         }
 
     }
