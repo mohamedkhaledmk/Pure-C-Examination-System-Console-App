@@ -19,7 +19,7 @@ namespace ConsoleApp1
 
             foreach (var pair in QuestionAnswerDirectory)
             {
-                if (pair.Key.CheckAnswers(pair.Value))
+                if (pair.Key.CheckAnswer(pair.Value))
                 {
                     Console.WriteLine($"Question {i}: Correct Student Answer");
                     correctAns++;

@@ -9,11 +9,12 @@ namespace ConsoleApp1
         public TrueFalseQuestion(string h, string b, int m, AnswerList answers, Answer correctAnswer)
             : base(h, b, m, answers, correctAnswer)
         {
+            if (answers.Count != 2)
+                throw new Exception("True/False Questions must have only 2 options");
         }
 
         public override void Display()
         {
-            Console.WriteLine("True/False Question");
             Console.WriteLine($"The Question Header is : {Header}\t\t {Marks} Marks");
             Console.WriteLine($"The Question Body is {Body}");
             Console.WriteLine("The Options Are : ");
@@ -21,7 +22,7 @@ namespace ConsoleApp1
                 Console.WriteLine($"- {ans}");
         }
 
-        public override bool CheckAnswers(Answer studentAnswer)
+        public override bool CheckAnswer(Answer studentAnswer)
         {
             if (studentAnswer == null || CorrectAnswer == null)
                 return false;

@@ -26,9 +26,24 @@ namespace ConsoleApp1
 
         public AnswerList Answers { get; set; }
         public Answer CorrectAnswer { get; set; }
+        protected Question(string h, string b, int m, AnswerList answers, Answer correctAns)
+        {
+            Header = h;
+            Body = b;
+            Marks = m;
+
+            Answers = new AnswerList();
+            if (answers != null)
+            {
+                foreach (var ans in answers)
+                    Answers.Add(ans);
+            }
+
+            CorrectAnswer = correctAns;
+        }
 
         public abstract void Display();
-        public abstract bool CheckAnswers(Answer stdAns);
+        public abstract bool CheckAnswer(Answer stdAns);
 
         public override bool Equals(object? obj)
         {
@@ -62,20 +77,5 @@ namespace ConsoleApp1
             return $"The Question Header is : {Header}\t\t {Marks} Marks\n The Question Body is{Body} \n ";
         }
 
-        protected Question(string h, string b, int m, AnswerList answers, Answer correctAns)
-        {
-            Header = h;
-            Body = b;
-            Marks = m;
-
-            Answers = new AnswerList();
-            if (answers != null)
-            {
-                foreach (var ans in answers)
-                    Answers.Add(ans);
-            }
-
-            CorrectAnswer = correctAns;
-        }
     }
 }

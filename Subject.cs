@@ -33,11 +33,11 @@ namespace ConsoleApp1
             }
                 return false;
         }
-        public void NotifyStudents()
+        public void NotifyStudents(Exam e)
         {
             foreach (var student in EnrolledStudents)
             {
-                Console.WriteLine($"Student {student.Name} is notified about subject {Name}.");
+                e.ExamStarted += student.onExamStarted;
             }
         }
 

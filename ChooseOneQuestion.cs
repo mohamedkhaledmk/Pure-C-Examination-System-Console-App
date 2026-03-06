@@ -11,7 +11,7 @@ namespace ConsoleApp1
 
         }
 
-        public override bool CheckAnswers(Answer studentAnswer)
+        public override bool CheckAnswer(Answer studentAnswer)
         {
             if (studentAnswer == null || CorrectAnswer == null)
                 return false;
