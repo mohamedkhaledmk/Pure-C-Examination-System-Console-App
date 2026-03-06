@@ -9,7 +9,7 @@ namespace ConsoleApp1
         AnswerList CorrectAnswers;
         public ChooseAllQuestion(string h, string b, int m, AnswerList answers, AnswerList correctAns) : base(h, b, m, answers, null)
         {
-            
+            CorrectAnswers = correctAns;
         }
 
         public bool CheckAnswer(AnswerList studentAnswer)
@@ -38,10 +38,7 @@ namespace ConsoleApp1
             return true;
         }
 
-        public override bool CheckAnswer(Answer stdAns)
-        {
-            throw new NotImplementedException();
-        }
+        public override bool CheckAnswer(Answer stdAns) => false;
 
         public override void Display()
         {

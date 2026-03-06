@@ -91,7 +91,22 @@ namespace ConsoleApp1
 
         public override int GetHashCode() => HashCode.Combine(Time,NumberOfQuestions,Subject,Mode);
 
-        public object Clone() => this.MemberwiseClone();
+        public object Clone()
+        {
+            var clone = (Exam)this.MemberwiseClone();
+
+            clone.Questions = new List<Question>();
+            foreach (var q in Questions)
+                clone.Questions.Add(q);
+
+            clone.QuestionAnswerDirectory = new Dictionary<Question, Answer>();
+            foreach (var (q, a) in QuestionAnswerDirectory)
+                clone.QuestionAnswerDirectory.Add(q, a);
+
+            clone.Subject = new Subject(Subject.Name, Subject.EnrolledStudents);
+
+            return clone;
+        }
 
         public int CompareTo(Exam? e1)
         {
