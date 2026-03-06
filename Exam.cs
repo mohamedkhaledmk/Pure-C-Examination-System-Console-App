@@ -7,11 +7,11 @@ namespace ConsoleApp1
     enum ExamMode { Starting,Queued,Finished};
     internal abstract class Exam : ICloneable, IComparable<Exam>
     {
-        private int Time { get; set; }
+        protected int Time { get; set; }
         public int NumberOfQuestions { get; set; }
         public List<Question> Questions { get; set; }
         public Dictionary<Question, Answer> QuestionAnswerDirectory { get; set; }
-        private Subject Subject { get; set; }
+        protected Subject Subject { get; set; }
         ExamMode Mode;
 
         //ctor
@@ -39,8 +39,9 @@ namespace ConsoleApp1
         public virtual void Finish()
         {
             Mode = ExamMode.Finished;
-            Console.WriteLine("Exam Finished");
-
+            int i = 1;
+            foreach (var (q, a) in QuestionAnswerDirectory )
+                Console.WriteLine($"  Question {i++}:\n Q: {q}  \nAns:  {a}");
         }
 
         public override string ToString()
