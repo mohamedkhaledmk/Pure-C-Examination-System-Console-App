@@ -60,7 +60,7 @@ namespace ConsoleApp1
                 { q2, coAnswers.GetById(2)! }    
             };
 
-            var practiceExam = new PracticeExam(30, practiceQuestions.Count, practiceQuestions, practiceAnswers, subject);
+            var practiceExam = new PracticeExam(30, practiceQuestions.Count, practiceQuestions, practiceAnswers, subject,"Practice_Exam2.txt");
 
             subject.NotifyStudents(practiceExam);
 
@@ -81,7 +81,7 @@ namespace ConsoleApp1
                 { q2, coAnswers.GetById(1)! }    
             };
 
-            var practiceExam2 = new PracticeExam(30, practiceQuestions.Count, practiceQuestions, wrongAnswers, subject);
+            var practiceExam2 = new PracticeExam(30, practiceQuestions.Count, practiceQuestions, wrongAnswers, subject,"Practice_exam1.txt");
             subject.NotifyStudents(practiceExam2);
             practiceExam2.ShowExam();
             practiceExam2.Start();
@@ -100,7 +100,7 @@ namespace ConsoleApp1
                 { q2, coAnswers.GetById(3)! }  
             };
 
-            var finalExam = new FinalExam(60, finalQuestions.Count, finalQuestions, finalAnswers, subject);
+            var finalExam = new FinalExam(60, finalQuestions.Count, finalQuestions, finalAnswers, subject,"Final_exam1.txt");
             subject.NotifyStudents(finalExam);
             finalExam.ShowExam();
             finalExam.Start();

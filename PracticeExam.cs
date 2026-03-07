@@ -7,7 +7,7 @@ namespace ConsoleApp1
 {
     public class PracticeExam:Exam
     {
-        public PracticeExam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub) : base(t, n, q, qad, sub)
+        public PracticeExam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub, string logFileName) : base(t, n, q, qad, sub, logFileName)
         {
 
         }

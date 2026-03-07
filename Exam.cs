@@ -12,7 +12,7 @@ namespace ConsoleApp1
 
         public int Time { get; set; }
         public int NumberOfQuestions { get; set; }
-        public List<Question> Questions { get; set; }
+        public QuestionList Questions { get; set; }
         public Dictionary<Question, Answer> QuestionAnswerDirectory { get; set; }
         public Subject Subject { get; set; }
 
@@ -34,11 +34,11 @@ namespace ConsoleApp1
         protected void OnExamStart() => ExamStarted?.Invoke(this, new ExamEventArgs(Subject, this));
 
         //ctor
-        public Exam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub)
+        public Exam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub,string logFileName)
         {
             Time = t;
             NumberOfQuestions = n;
-            Questions = new();
+            Questions = new QuestionList(logFileName);  
             foreach (var x in q)
                 Questions.Add(x);
             QuestionAnswerDirectory = new();
@@ -95,7 +95,7 @@ namespace ConsoleApp1
         {
             var clone = (Exam)this.MemberwiseClone();
 
-            clone.Questions = new List<Question>();
+            clone.Questions = new QuestionList(Questions.FileName + "_clone.txt");
             foreach (var q in Questions)
                 clone.Questions.Add(q);
 

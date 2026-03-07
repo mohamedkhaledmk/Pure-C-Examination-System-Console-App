@@ -6,7 +6,7 @@ namespace ConsoleApp1
 {
     public class FinalExam : Exam
     {
-        public FinalExam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub) : base(t, n, q, qad, sub)
+        public FinalExam(int t, int n, List<Question> q, Dictionary<Question, Answer> qad, Subject sub,string logFileName) : base(t, n, q, qad, sub, logFileName)
         {
         }
 
